@@ -1,0 +1,47 @@
+# Main plugin settings.
+settings:
+  # Send usage statistics? (anonymous)
+  metrics: true
+  # Message formatting.
+  # legacy - &color.
+  # minimessage - <color>.
+  # More about MiniMessage: https://docs.papermc.io/adventure/minimessage/format/
+  colorizer: minimessage
+  # Plugin localization.
+  # Available: en, ru.
+  # You can suggest a translation at:
+  # https://github.com/SuperCHIROK1/PlayerThemes/issues
+  localization: en
+  # Data settings.
+  data:
+    # Save path and file name.
+    # Do not add .yml at the end, the plugin will add it automatically.
+    path: 'data'
+  # Permissions settings.
+  permissions:
+    # Reload the plugin. (/themes reload)
+    reload: 'playerthemes.reload'
+    # Select a theme. (/themes select <theme>)
+    install: 'playerthemes.install'
+    # Set a theme for other players. (/themes select <theme> <player>)
+    install_other: 'playerthemes.install.other'
+  # Default theme (from 'themes' list).
+  default_theme: 'red'
+  # Themes configuration.
+  # You can add your own.
+  themes:
+    red:
+      name: 'Red'
+      value: '&c'
+    green:
+      name: 'Green'
+      value: '&a'
+    yellow:
+      name: 'Yellow'
+      value: '&e'
+  #
+  # <theme_id>:     (%pth_id%)
+  #   name: 'Theme name (%pth_name%)'
+  #   value: 'Theme colors (%pth_theme%)'
+  #   permission: 'Permission required to use this theme'
+  #

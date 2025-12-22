@@ -1,0 +1,19 @@
+# Translated by SuperCHIROK1
+# https://github.com/SuperCHIROK1
+
+# Сообщения плагина.
+messages:
+  # Префикс (заменяется от %prefix%)
+  prefix: '<b><gradient:#FFD900:#E7FF00>[PlayerThemes]</gradient></b><reset>'
+  no_perms: '%prefix% <red>У Вас нет полномочий, чтобы использовать данную команду!'
+
+  admin:
+    reloaded: '%prefix% <green>Конфигурация успешно перезагружена!'
+
+  command:
+    player_not_found: '%prefix% <red>Игрок не найден или не в сети.'
+    theme_installed: '%prefix% <green>Тема %s была успешно установлена'
+    theme_not_found: '%prefix% <red>Тема %s не найдена в <white>config.yml'
+    player_only: '%prefix% <red>Вы должны быть игроком, чтобы совершать данное действие.'
+    theme_no_perms: '%prefix% <red>У Вас нет полномочий, чтобы использовать данную тему.'
+    usage: '%prefix% <white>Использование: <green>/themes select <тема> <?игрок>'

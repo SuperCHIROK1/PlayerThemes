@@ -1,0 +1,22 @@
+name: PlayerThemes
+version: '${project.version}'
+main: me.superchirok1.playerthemes.PlayerThemes
+api-version: '1.16'
+prefix: PlayerThemes
+depend: [PlaceholderAPI]
+authors: [SuperCHIROK1]
+description: Player themes plugin with PlaceholderAPI support
+
+commands:
+  themes:
+    description: 'Main PlayerThemes command'
+    aliases:
+      - playerthemes
+
+permissions:
+  playerthemes.reload:
+    description: Reload plugin
+  playerthemes.install:
+    description: Install theme
+  playerthemes.install.other:
+    description: Install theme for other players

@@ -1,0 +1,19 @@
+# Translated by SuperCHIROK1
+# https://github.com/SuperCHIROK1
+
+# Plugin messages.
+messages:
+  # Prefix (replaced by %prefix%)
+  prefix: '<b><gradient:#FFD900:#E7FF00>[PlayerThemes]</gradient></b><reset>'
+  no_perms: '%prefix% <red>You do not have permission to use this command!'
+
+  admin:
+    reloaded: '%prefix% <green>Configuration successfully reloaded!'
+
+  command:
+    player_not_found: '%prefix% <red>The player was not found or was offline.'
+    theme_installed: '%prefix% <green>The %s theme was installed successfully.'
+    theme_not_found: '%prefix% <red>Theme %s not found in <white>config.yml'
+    player_only: '%prefix% <red>You must be a player to perform this action.'
+    theme_no_perms: '%prefix% <red>You do not have permission to use this theme.'
+    usage: '%prefix% <white>Usage: <green>/themes select <theme> <?player>'
