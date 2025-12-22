@@ -3,7 +3,7 @@ Add custom themes that players can choose to your Spigot server.
 
 ### Links:
 
-- [**Contributors**](https://google.com)
+- [**Contributors**](https://github.com/SuperCHIROK1/PlayerThemes/blob/master/CONTRIBUTORS.md)
 - [**Licence**](https://github.com/SuperCHIROK1/PlayerThemes/blob/main/LICENSE)
 
 ### Download Links:
