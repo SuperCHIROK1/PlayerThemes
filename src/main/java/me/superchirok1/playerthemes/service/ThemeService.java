@@ -68,7 +68,8 @@ public class ThemeService {
                     Theme theme = new Theme(
                             section.getString("name", key),
                             section.getString("value", ""),
-                            section.getString("permission")
+                            section.getString("permission"),
+                            section.getString("description", "")
                     );
                     themes.put(key.toLowerCase(), theme);
                 }
@@ -94,6 +95,12 @@ public class ThemeService {
                 ? theme.getValue() : getClassicThemeValue();
     }
 
+    public String getPlayerThemeDescription(@NotNull OfflinePlayer player) {
+        Theme theme = themes.get(data.get(player.getUniqueId()));
+        return theme != null
+                ? theme.getDescription() : getClassicThemeDescription();
+    }
+
     public Theme getPlayerTheme(@NotNull OfflinePlayer player) {
         return themes.get(data.get(player.getUniqueId()));
     }
@@ -114,6 +121,12 @@ public class ThemeService {
                 ? theme.getValue() : "";
     }
 
+    public String getClassicThemeDescription() {
+        Theme theme = themes.get(pl.config.get.defTheme());
+        return theme != null
+                ? theme.getDescription() : "";
+    }
+
     public boolean hasTheme(String theme) {
         return themes.containsKey(theme.toLowerCase());
     }
@@ -126,6 +139,23 @@ public class ThemeService {
                 || player.hasPermission(theme.getPermission());
     }
 
+    public String getThemeName(@NotNull String id) {
+        Theme theme = themes.get(id);
+        return theme != null
+                ? theme.getName() : null;
+    }
+
+    public String getThemeValue(@NotNull String id) {
+        Theme theme = themes.get(id);
+        return theme != null
+                ? theme.getValue() : null;
+    }
+
+    public String getThemeDescription(@NotNull String id) {
+        Theme theme = themes.get(id);
+        return theme != null
+                ? theme.getDescription() : null;
+    }
 
     public void set(UUID uuid, String themeId) {
         themeId = themeId.toLowerCase();

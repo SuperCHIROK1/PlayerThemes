@@ -4,7 +4,7 @@
   <groupId>me.superchirok1</groupId>
   <artifactId>PlayerThemes</artifactId>
   <name>PlayerThemes</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>Player themes plugin with PlaceholderAPI support</description>
   <build>
     <resources>

@@ -5,11 +5,17 @@ public class Theme {
     private final String name;
     private final String value;
     private final String permission;
+    private final String description;
 
-    public Theme(String name, String value, String permission) {
+    public String getDescription() {
+        return description;
+    }
+
+    public Theme(String name, String value, String permission, String description) {
         this.name = name;
         this.value = value;
         this.permission = permission;
+        this.description = description;
     }
 
     public String getValue() {

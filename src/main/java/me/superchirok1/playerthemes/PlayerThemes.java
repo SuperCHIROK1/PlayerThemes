@@ -11,6 +11,7 @@ import me.superchirok1.playerthemes.service.ThemeService;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public final class PlayerThemes extends JavaPlugin {
 
     public LocalizationProvider localeProvider;
     private final List<String> languageList = Arrays.asList("en","ru");
+
 
     @Override
     public void onEnable() {

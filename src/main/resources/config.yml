@@ -42,6 +42,7 @@ settings:
   #
   # <theme_id>:     (%pth_id%)
   #   name: 'Theme name (%pth_name%)'
-  #   value: 'Theme colors (%pth_theme%)'
+  #   value: 'Theme colors (%pth_theme% or %pth_value%)'
   #   permission: 'Permission required to use this theme'
+  #   description: 'Theme description (%pth_desc%)'
   #

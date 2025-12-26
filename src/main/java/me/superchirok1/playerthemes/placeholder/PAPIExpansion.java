@@ -38,8 +38,30 @@ public class PAPIExpansion extends PlaceholderExpansion {
             return pl.service.getPlayerThemeName(player);
         }
 
-        if (params.equalsIgnoreCase("theme")) {
+        if (params.equalsIgnoreCase("theme") || params.equalsIgnoreCase("value")) {
             return pl.service.getPlayerThemeValue(player);
+        }
+
+        if (params.equalsIgnoreCase("desc")) {
+            return pl.service.getPlayerThemeDescription(player);
+        }
+
+        if (params.contains("_")) {
+            if (params.startsWith("theme_") || params.startsWith("value_")) {
+                params = params.replace("theme_", "")
+                        .replace("value_", "");
+                return pl.service.getThemeValue(params);
+            }
+
+            if (params.startsWith("desc_")) {
+                params = params.replace("desc_", "");
+                return pl.service.getThemeDescription(params);
+            }
+
+            if (params.startsWith("name_")) {
+                params = params.replace("name_", "");
+                return pl.service.getThemeName(params);
+            }
         }
 
         return null;
