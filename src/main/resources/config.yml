@@ -39,10 +39,23 @@ settings:
     yellow:
       name: 'Yellow'
       value: '&e'
+    # Gradient example.
+    # The plugin that uses this must support MiniMessage.
+    # To use, type "%placeholder%YOUR-TEXT</gradient>" in the plugin.
+    # %placeholder% can be %pth_value% or %pth_values_value-key%.
+    gradient:
+      name: 'Gradient test'
+      value: '<gradient:white:gray>'
+      description: 'Gradient test'
+      values:
+        tab: '<gradient:white:aqua>' # %pth_values_tab%
+        chat: '<gradient:black:gold>' # %pth_values_chat%
   #
   # <theme_id>:     (%pth_id%)
   #   name: 'Theme name (%pth_name%)'
   #   value: 'Theme colors (%pth_theme% or %pth_value%)'
   #   permission: 'Permission required to use this theme'
   #   description: 'Theme description (%pth_desc%)'
+  #   values:
+  #     [value-key]: 'value (%pth_values_value-key%)'
   #

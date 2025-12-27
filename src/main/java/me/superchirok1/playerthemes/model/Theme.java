@@ -1,33 +1,18 @@
 package me.superchirok1.playerthemes.model;
 
-public class Theme {
+import java.util.Map;
 
-    private final String name;
-    private final String value;
-    private final String permission;
-    private final String description;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Theme(String name, String value, String permission, String description) {
-        this.name = name;
-        this.value = value;
-        this.permission = permission;
-        this.description = description;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public String getName() {
-        return name;
-    }
+public record Theme(
+        String name,
+        String value,
+        String permission,
+        String description,
+        Map<String, String> values
+) {
+        public String getValueByKey(String key) {
+                return values != null
+                        ? values.getOrDefault(key, "")
+                        : "";
+        }
 
 }

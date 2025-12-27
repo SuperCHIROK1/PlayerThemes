@@ -64,12 +64,25 @@ public class ThemeService {
         if (sec != null) {
             for (String key : sec.getKeys(false)) {
                 ConfigurationSection section = sec.getConfigurationSection(key);
+
                 if (section != null) {
+
+                    Map<String, String> valuesMap = null;
+
+                    ConfigurationSection values = section.getConfigurationSection("values");
+                    if (values!=null) {
+                        valuesMap = new HashMap<>();
+                        for (String valueKey : values.getKeys(false)) {
+                            valuesMap.put(valueKey, values.getString(valueKey));
+                        }
+                    }
+
                     Theme theme = new Theme(
                             section.getString("name", key),
                             section.getString("value", ""),
                             section.getString("permission"),
-                            section.getString("description", "")
+                            section.getString("description", ""),
+                            valuesMap
                     );
                     themes.put(key.toLowerCase(), theme);
                 }
@@ -86,19 +99,25 @@ public class ThemeService {
     public String getPlayerThemeName(@NotNull OfflinePlayer player) {
         Theme theme = themes.get(data.get(player.getUniqueId()));
         return theme != null
-                ? theme.getName() : getClassicThemeName();
+                ? theme.name() : getClassicThemeName();
     }
 
     public String getPlayerThemeValue(@NotNull OfflinePlayer player) {
         Theme theme = themes.get(data.get(player.getUniqueId()));
         return theme != null
-                ? theme.getValue() : getClassicThemeValue();
+                ? theme.value() : getClassicThemeValue();
     }
 
     public String getPlayerThemeDescription(@NotNull OfflinePlayer player) {
         Theme theme = themes.get(data.get(player.getUniqueId()));
         return theme != null
-                ? theme.getDescription() : getClassicThemeDescription();
+                ? theme.description() : getClassicThemeDescription();
+    }
+
+    public String getPlayerThemeValueByKey(@NotNull OfflinePlayer player, @NotNull String key) {
+        Theme theme = themes.get(data.get(player.getUniqueId()));
+        return theme != null
+                ? theme.getValueByKey(key) : getClassicThemeValueByKey(key);
     }
 
     public Theme getPlayerTheme(@NotNull OfflinePlayer player) {
@@ -112,19 +131,25 @@ public class ThemeService {
     public String getClassicThemeName() {
         Theme theme = themes.get(pl.config.get.defTheme());
         return theme != null
-                ? theme.getName() : "";
+                ? theme.name() : "";
     }
 
     public String getClassicThemeValue() {
         Theme theme = themes.get(pl.config.get.defTheme());
         return theme != null
-                ? theme.getValue() : "";
+                ? theme.value() : "";
     }
 
     public String getClassicThemeDescription() {
         Theme theme = themes.get(pl.config.get.defTheme());
         return theme != null
-                ? theme.getDescription() : "";
+                ? theme.description() : "";
+    }
+
+    public String getClassicThemeValueByKey(@NotNull String key) {
+        Theme theme = themes.get(pl.config.get.defTheme());
+        return theme != null
+                ? theme.getValueByKey(key) : "";
     }
 
     public boolean hasTheme(String theme) {
@@ -135,26 +160,32 @@ public class ThemeService {
         Theme theme = themes.get(s);
         if (theme == null) return true;
 
-        return theme.getPermission() == null
-                || player.hasPermission(theme.getPermission());
+        return theme.permission() == null
+                || player.hasPermission(theme.permission());
     }
 
     public String getThemeName(@NotNull String id) {
         Theme theme = themes.get(id);
         return theme != null
-                ? theme.getName() : null;
+                ? theme.name() : null;
     }
 
     public String getThemeValue(@NotNull String id) {
         Theme theme = themes.get(id);
         return theme != null
-                ? theme.getValue() : null;
+                ? theme.value() : null;
     }
 
     public String getThemeDescription(@NotNull String id) {
         Theme theme = themes.get(id);
         return theme != null
-                ? theme.getDescription() : null;
+                ? theme.description() : null;
+    }
+
+    public String getThemeValueByKey(@NotNull String themeId, @NotNull String key) {
+        Theme theme = themes.get(themeId);
+        return theme != null
+                ? theme.getValueByKey(key) : null;
     }
 
     public void set(UUID uuid, String themeId) {
@@ -165,7 +196,7 @@ public class ThemeService {
 
         Theme themeClass = themes.get(themeId);
 
-        if (player != null && themeClass.getPermission() != null && !player.hasPermission(themeClass.getPermission())) {
+        if (player != null && themeClass.permission() != null && !player.hasPermission(themeClass.permission())) {
             return;
         }
 

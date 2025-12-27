@@ -25,42 +25,37 @@ public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0.0";
+        return "1.0.2";
     }
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
-        if (params.equalsIgnoreCase("id")) {
-            return pl.service.getPlayerThemeId(player);
+
+        var service = pl.service;
+
+        switch (params) {
+            case "name":
+                return service.getPlayerThemeName(player);
+            case "theme", "value":
+                return service.getPlayerThemeValue(player);
+            case "id":
+                return service.getPlayerThemeId(player);
+            case "desc":
+                return service.getPlayerThemeDescription(player);
         }
 
-        if (params.equalsIgnoreCase("name")) {
-            return pl.service.getPlayerThemeName(player);
-        }
-
-        if (params.equalsIgnoreCase("theme") || params.equalsIgnoreCase("value")) {
-            return pl.service.getPlayerThemeValue(player);
-        }
-
-        if (params.equalsIgnoreCase("desc")) {
-            return pl.service.getPlayerThemeDescription(player);
-        }
-
-        if (params.contains("_")) {
+        if (params.indexOf("_", 4)<7) {
+            if (params.startsWith("values_")) {
+                return service.getPlayerThemeValueByKey(player, params.substring(7));
+            }
             if (params.startsWith("theme_") || params.startsWith("value_")) {
-                params = params.replace("theme_", "")
-                        .replace("value_", "");
-                return pl.service.getThemeValue(params);
+                return service.getThemeValue(params.substring(6));
             }
-
-            if (params.startsWith("desc_")) {
-                params = params.replace("desc_", "");
-                return pl.service.getThemeDescription(params);
-            }
-
             if (params.startsWith("name_")) {
-                params = params.replace("name_", "");
-                return pl.service.getThemeName(params);
+                return service.getThemeName(params.substring(5));
+            }
+            if (params.startsWith("desc_")) {
+                return service.getThemeDescription(params.substring(5));
             }
         }
 
