@@ -80,7 +80,7 @@ public class PlayerThemesCommand implements CommandExecutor, TabCompleter {
 
                     if (service.hasTheme(theme)) {
                         service.set(player.getUniqueId(), theme);
-                        player.sendMessage(String.format(msgs.commandThemeInstalled(), theme));
+                        player.sendMessage(String.format(msgs.commandThemeInstalled(), service.getThemeName(theme)));
                     } else {
                         player.sendMessage(String.format(msgs.commandThemeNotFound(), theme));
                     }
