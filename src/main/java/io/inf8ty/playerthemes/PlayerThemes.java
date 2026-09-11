@@ -10,7 +10,8 @@ import io.inf8ty.playerthemes.database.impl.SQLiteDatabase;
 import io.inf8ty.playerthemes.database.redis.RedisManager;
 import io.inf8ty.playerthemes.theme.ThemeManager;
 import io.inf8ty.playerthemes.color.Text;
-import io.inf8ty.playerthemes.update.UpdateChecker;
+import io.inf8ty.playerthemes.util.Metrics;
+import io.inf8ty.playerthemes.util.UpdateChecker;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.bukkit.Bukkit;
@@ -71,6 +72,12 @@ public final class PlayerThemes extends JavaPlugin {
                 sendConsole("&8==================================================");
             }, 600L);
         }
+
+        Metrics metrics = new Metrics(this, 28488);
+
+        metrics.addCustomChart(new Metrics.SimplePie("used_serializers", () -> Text.type.name()));
+        metrics.addCustomChart(new Metrics.SimplePie("used_db", () ->  config.database().type().name()));
+        metrics.addCustomChart(new Metrics.SimplePie("check_for_updates", () -> config.notifyUpdates() ? "Yes" : "No"));
     }
 
     @Override

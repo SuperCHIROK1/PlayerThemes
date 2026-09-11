@@ -14,9 +14,12 @@ public class Text {
 
     private final LegacySerializer legacySerializer = new LegacySerializer();
 
+    public Serializer.Type type;
+
     public void init(FileConfiguration config) {
         if (config == null) return;
-        serializer = config.getString("serializer", "LEGACY").equalsIgnoreCase("LEGACY")
+        type = Serializer.Type.valueOf(config.getString("serializer", "LEGACY").toUpperCase());
+        serializer = type == Serializer.Type.LEGACY
                 ? new LegacySerializer()
                 : new MiniMessageSerializer();
     }

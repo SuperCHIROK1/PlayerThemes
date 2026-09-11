@@ -1,9 +1,8 @@
-package io.inf8ty.playerthemes.update;
+package io.inf8ty.playerthemes.util;
 
 import io.inf8ty.playerthemes.PlayerThemes;
 import io.inf8ty.playerthemes.color.Text;
 import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
