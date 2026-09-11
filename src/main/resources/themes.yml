@@ -1,0 +1,39 @@
+# ВАЖНЫЙ ПАРАМЕТР ДЛЯ ДОНАТ-ГРУПП.
+# Режим проверки прав на тему оформления.
+#: `true`  - будет проверяться права ТОЛЬКО один раз при выборе темы.
+#            после выбора тема сохраняется и работает даже при отсутствии права.
+#: `false` - будет проверяться права ПРИ КАЖДОМ ВЫЗОВЕ плейсхолдеров.
+#            идеально для временных привилегий: при истечении срока права
+#            выбранная тема игрока сразу переключается на дефолтную.
+check-permission-only-on-select: false
+default-theme: "red" # дефолтная тема (если игрок не выбрал тему).
+themes: # кастомные темы для выбора.
+  gold: # идентификатор темы (%pth_id%)
+    display-name: "Янтарный" # название темы (%pth_name%)
+    value: "&6" # основное значение темы (в большинстве случаев - главный цвет темы)
+    description: "Янтарный цвет" # описание темы (%pth_desc%)
+    permission: "playerthemes.gold" # не будет влиять, если эта тема установлена как дефолтная
+    values: # второстепенные значения темы (%pth_<ключ>%)
+      bossbar: "YELLOW" # %pth_bossbar%
+      glass_pane: "ORANGE_STAINED_GLASS_PANE" # %pth_glass_pane%
+      mm: "<gold>" # %pth_mm%
+  red:
+    display-name: "Красный"
+    value: "&c"
+    description: "Красный цвет"
+    permission: "playerthemes.red"
+    values:
+      bossbar: "RED"
+      glass_pane: "RED_STAINED_GLASS_PANE"
+      mm: "<red>"
+  green:
+    display-name: "Зеленый"
+    value: "&a"
+    description: "Зеленый цвет"
+    permission: "playerthemes.green"
+    values:
+      bossbar: "GREEN"
+      glass_pane: "GREEN_STAINED_GLASS_PANE"
+      mm: "<green>"
+
+config-version: 2 # Не изменяйте данный параметр!

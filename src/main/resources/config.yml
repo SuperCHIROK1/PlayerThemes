@@ -1,61 +1,79 @@
-# Main plugin settings.
-settings:
-  # Send usage statistics? (anonymous)
-  metrics: true
-  # Message formatting.
-  # legacy - &color.
-  # minimessage - <color>.
-  # More about MiniMessage: https://docs.papermc.io/adventure/minimessage/format/
-  colorizer: minimessage
-  # Plugin localization.
-  # Available: en, ru.
-  # You can suggest a translation at:
-  # https://github.com/SuperCHIROK1/PlayerThemes/issues
-  localization: en
-  # Data settings.
-  data:
-    # Save path and file name.
-    # Do not add .yml at the end, the plugin will add it automatically.
-    path: 'data'
-  # Permissions settings.
-  permissions:
-    # Reload the plugin. (/themes reload)
-    reload: 'playerthemes.reload'
-    # Select a theme. (/themes select <theme>)
-    install: 'playerthemes.install'
-    # Set a theme for other players. (/themes select <theme> <player>)
-    install_other: 'playerthemes.install.other'
-  # Default theme (from 'themes' list).
-  default_theme: 'red'
-  # Themes configuration.
-  # You can add your own.
-  themes:
-    red:
-      name: 'Red'
-      value: '&c'
-    green:
-      name: 'Green'
-      value: '&a'
-    yellow:
-      name: 'Yellow'
-      value: '&e'
-    # Gradient example.
-    # The plugin that uses this must support MiniMessage.
-    # To use, type "%placeholder%YOUR-TEXT</gradient>" in the plugin.
-    # %placeholder% can be %pth_value% or %pth_values_value-key%.
-    gradient:
-      name: 'Gradient test'
-      value: '<gradient:white:gray>'
-      description: 'Gradient test'
-      values:
-        tab: '<gradient:white:aqua>' # %pth_values_tab%
-        chat: '<gradient:black:gold>' # %pth_values_chat%
-  #
-  # <theme_id>:     (%pth_id%)
-  #   name: 'Theme name (%pth_name%)'
-  #   value: 'Theme colors (%pth_theme% or %pth_value%)'
-  #   permission: 'Permission required to use this theme'
-  #   description: 'Theme description (%pth_desc%)'
-  #   values:
-  #     [value-key]: 'value (%pth_values_value-key%)'
-  #
+# Тип форматирования сообщений.
+#: LEGACY - Классика (&a, &#rrggbb)
+#: MINI_MESSAGE - <цвет> (1.18+)
+# Подробнее о MiniMessage: https://docs.papermc.io/adventure/minimessage/format/
+serializer: LEGACY
+# Оповещать при выходе новых версий (рекомендуется)
+notify-updates: true
+
+# Настройки базы данных.
+database-settings:
+  type: sqlite # sqlite / mysql
+  sqlite: # настройки только для sqlite
+    file-path: "data.db"
+  mysql: # настройки только для mysql
+    host: "127.0.0.1"
+    port: 3306
+    database: "playerthemes"
+    username: "root"
+    password: ""
+    # Параметры подключения к внешней базе данных.
+    # Лучше не изменяйте, если не разбираетесь в этом.
+    arguments: "?useSSL=false&autoReconnect=true&characterEncoding=utf8"
+  # Настройки пула HikariCP.
+  # Можете добавлять любые параметры, поддерживаемым им.
+  pool-settings:
+    maximum-pool-size: 10
+    connection-timeout: 5000
+    max-lifetime: 1800000
+  # Настройки Redis для мультисерверности.
+  # Используется в добавок с MySQL.
+  redis:
+    enabled: false
+    server-id: 'grief-1'
+    channel: 'playerthemes:sync'
+    connection:
+      host: "127.0.0.1"
+      port: 6379
+      username: ""
+      password: ""
+      database: 0
+
+# Настройки команды выбора темы.
+command-settings:
+  main-command: "themes"
+  aliases:
+    - "design"
+    - "customization"
+    - "custom"
+  select:
+    command-cooldown: 5000 # время кд в миллисекундах. чтобы отключить - установите значение 0
+    cooldown-bypass: true # байпас кд игрокам с правом playerthemes.cooldown.bypass
+  select-other:
+    command-cooldown: 0 # время кд в миллисекундах. чтобы отключить - установите значение 0
+    cooldown-bypass: true # байпас кд игрокам с правом playerthemes.cooldown.bypass
+
+# Сообщения плагина.
+messages:
+  prefix: "&6[★] &7»&f"
+  no-permission: "%prefix% У вас &cнет полномочий&f, чтобы &6выполнить&f данное действие."
+  only-players: "%prefix% Данную команду могут выполнять только игроки."
+  cooldown: "%prefix% Подождите &a%time% сек.&f перед &6следующим использованием&f команды."
+  admin:
+    reloaded: "%prefix% Плагин &aуспешно&f перезагружен!"
+    help: |-
+      &6[★] Помощь по Плагину:
+      &8- &e/pth reload &8» &7Перезагрузить плагин.
+  theme:
+    not-found: "%prefix% Тема &c%theme%&f не найдена."
+    no-permission: "%prefix% Вы &cне можете&f использовать тему &6%theme%&f."
+    installed: "%prefix% Вы &aуспешно&f установили тему оформления &6%theme%&f."
+    installed-player: "%prefix% Тема &a%theme%&f успешно установлена для игрока &6%player%&f."
+    reset-success: "%prefix% Ваше оформление было &aуспешно&f сброшено до &6стандартного&f."
+    reset-success-player: "%prefix% Оформление игрока &6%player%&f успешно сброшено."
+    help: |-
+      &6[★] Помощь по Кастомизации:
+      &8- &e/themes [тема] &8» &7Выбрать тему оформления.
+      &8- &e/themes reset &8» &7Сбросить текущую тему до стандартной.
+
+config-version: 2 # Не изменяйте данный параметр!

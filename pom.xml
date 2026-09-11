@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>me.superchirok1</groupId>
+  <groupId>io.inf8ty</groupId>
   <artifactId>PlayerThemes</artifactId>
-  <version>1.0.2</version>
+  <version>2.0</version>
   <packaging>jar</packaging>
 
   <name>PlayerThemes</name>
@@ -32,18 +32,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.4.1</version>
-                <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>me.superchirok1.playerthemes.metrics</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>net.kyori</pattern>
-                            <shadedPattern>me.superchirok1.playerthemes.libs</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -64,8 +52,8 @@
 
   <repositories>
       <repository>
-          <id>spigotmc-repo</id>
-          <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+          <id>papermc-repo</id>
+          <url>https://repo.papermc.io/repository/maven-public/</url>
       </repository>
       <repository>
           <id>sonatype</id>
@@ -75,44 +63,48 @@
           <id>placeholderapi</id>
           <url>https://repo.extendedclip.com/releases/</url>
       </repository>
+      <repository>
+          <id>jitpack.io</id>
+          <url>https://jitpack.io</url>
+      </repository>
   </repositories>
 
   <dependencies>
       <dependency>
-          <groupId>org.spigotmc</groupId>
-          <artifactId>spigot-api</artifactId>
-          <version>1.16.5-R0.1-SNAPSHOT</version>
+          <groupId>io.papermc.paper</groupId>
+          <artifactId>paper-api</artifactId>
+          <version>1.18.2-R0.1-SNAPSHOT</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
           <groupId>me.clip</groupId>
           <artifactId>placeholderapi</artifactId>
-          <version>2.11.6</version>
+          <version>2.12.3</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>org.bstats</groupId>
-          <artifactId>bstats-bukkit</artifactId>
-          <version>3.1.0</version>
-          <scope>compile</scope>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.46</version>
+          <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-api</artifactId>
-          <version>4.18.0</version>
-          <scope>compile</scope>
+          <groupId>it.unimi.dsi</groupId>
+          <artifactId>fastutil</artifactId>
+          <version>8.5.19</version>
+          <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-text-minimessage</artifactId>
-          <version>4.18.0</version>
-          <scope>compile</scope>
+          <groupId>com.zaxxer</groupId>
+          <artifactId>HikariCP</artifactId>
+          <version>5.1.0</version>
+          <scope>provided</scope>
       </dependency>
       <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-platform-bukkit</artifactId>
-          <version>4.3.2</version>
-          <scope>compile</scope>
+          <groupId>redis.clients</groupId>
+          <artifactId>jedis</artifactId>
+          <version>7.2.0</version>
+          <scope>provided</scope>
       </dependency>
   </dependencies>
 </project>

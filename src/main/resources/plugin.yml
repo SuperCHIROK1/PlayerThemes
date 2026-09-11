@@ -1,22 +1,30 @@
 name: PlayerThemes
 version: '${project.version}'
-main: me.superchirok1.playerthemes.PlayerThemes
+main: io.inf8ty.playerthemes.PlayerThemes
 api-version: '1.16'
 prefix: PlayerThemes
 depend: [PlaceholderAPI]
 authors: [SuperCHIROK1]
-description: Player themes plugin with PlaceholderAPI support
+description: Allow players to customize their themes
+
+libraries:
+  - "com.zaxxer:HikariCP:5.1.0"
+  - "redis.clients:jedis:7.2.0"
 
 commands:
-  themes:
-    description: 'Main PlayerThemes command'
+  playerthemes:
     aliases:
-      - playerthemes
+      - pth
+    permission: "playerthemes.admin"
 
 permissions:
-  playerthemes.reload:
+  playerthemes.admin:
     description: Reload plugin
   playerthemes.install:
     description: Install theme
   playerthemes.install.other:
     description: Install theme for other players
+  playerthemes.cooldown.bypass:
+    description: Bypass commands cooldown
+  playerthemes.notify:
+    description: Notify plugin updates
