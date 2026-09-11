@@ -14,7 +14,9 @@ public record MessagesSettings(
         String themeInstalled,
         String themeInstalledPlayer,
         String resetSuccess,
-        String resetSuccessPlayer
+        String resetSuccessPlayer,
+        String adminMigrationFileNotFound,
+        String adminMigrationSuccess
 ) {
     public static MessagesSettings from(ConfigurationSection section) {
         String prefix = section.getString("prefix");
@@ -30,7 +32,9 @@ public record MessagesSettings(
                 applyPrefix(section.getString("theme.installed", ""), prefix),
                 applyPrefix(section.getString("theme.installed-player", ""), prefix),
                 applyPrefix(section.getString("theme.reset-success", ""), prefix),
-                applyPrefix(section.getString("theme.reset-success-player", ""), prefix)
+                applyPrefix(section.getString("theme.reset-success-player", ""), prefix),
+                applyPrefix(section.getString("admin.migration.file-not-found", ""), prefix),
+                applyPrefix(section.getString("admin.migration.success", ""), prefix)
         );
     }
 
