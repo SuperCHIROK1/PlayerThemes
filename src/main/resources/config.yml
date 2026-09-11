@@ -66,6 +66,7 @@ messages:
     help: |-
       &6[★] Помощь по Плагину:
       &8- &e/pth reload &8» &7Перезагрузить плагин.
+      &8- &e/pth migrate data <файл> &8» &7Мигрировать данные с 1.x версий.
     migration:
       file-not-found: "%prefix% Файл &c%file% &fне найден в &6plugins/PlayerThemes&f."
       success: "%prefix% Миграция данных &aпрошла&f успешно. Мигрировано &6%count% записей&f."
